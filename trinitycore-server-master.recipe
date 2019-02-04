@@ -1,0 +1,35 @@
+[VERSION]
+B_GITHUBVER https://github.com/TrinityCore/TrinityCore
+
+[REQUIRED]
+default-libmysqlclient-dev libssl-dev libbz2-dev libreadline-dev libncurses-dev libboost-dev libboost-thread-dev libboost-system-dev libboost-filesystem-dev libboost-program-options-dev libboost-iostreams-dev
+
+[BUILD]
+B_GET git https://github.com/TrinityCore/TrinityCore.git trinitycore-src-master
+cd trinitycore-src-master
+git checkout master
+
+INSTALL_PREFIX=/opt/trinitycore
+mkdir build-server
+cd build-server
+cmake ../ -DCMAKE_INSTALL_PREFIX=$INSTALL_PREFIX -DSERVERS=1 -DTOOLS=0 -DWITH_WARNINGS=0 -DSCRIPTS=static
+make -j 2
+make install DESTDIR=$B_INSTALLDIR
+
+[PKG]
+type=deb
+torepo=y
+
+[DEB]
+Package: trinitycore-server-master
+Version: B_VERSION
+Section: trinitycore
+Priority: optional
+Architecture: B_ARCH
+Depends: libboost-system1.62.0, libboost-filesystem1.62.0, libboost-thread1.62.0, libboost-program-options1.62.0, libboost-iostreams1.62.0, libboost-regex1.62.0, libmariadbclient18
+Suggests: trinitycore-tools-master
+Recommends: trinitycore-database-master
+Maintainer: noreply@trinitycore.org
+Description: TrinityCore is an MMORPG framework that is built using C++, and using a back-end of MySQL for the DB content.
+ This package contains the server binaries and configuration files.
+Homepage: https://www.trinitycore.org/

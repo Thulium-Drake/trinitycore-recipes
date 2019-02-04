@@ -1,0 +1,22 @@
+[Unit]
+Description=TrinityCore Worldserver
+After=network.target mysql.service trinitycore-authserver.service
+
+[Service]
+User=trinitycore
+Group=trinitycore
+
+# Run the prestart with root permissions
+PermissionsStartOnly=true
+ExecStartPre=/usr/bin/install -m 755 -o trinitycore -g trinitycore -d /var/run/trinitycore
+
+# Start the server, WorkingDirectory is the SQL dir to automatically import base DB if needed
+WorkingDirectory=/opt/trinitycore/sql/base
+ExecStart=/opt/trinitycore/bin/worldserver
+ExecStop=/bin/kill -2 $MAINPID
+PIDFile=/var/run/trinitycore/worldserver.pid
+KillMode=process
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,12 @@
+#!/bin/bash
+# Post-install tasks for TrinityCore
+
+# create the user to run the server, it doesn't need any write permissions on the filesystem, only in the log dir
+adduser --system trinitycore --home /opt/trinitycore --group --no-create-home
+
+# create logdir
+mkdir -p /var/log/trinitycore
+chown -R trinitycore:trinitycore /var/log/trinitycore
+
+# reload systemd
+systemctl daemon-reload

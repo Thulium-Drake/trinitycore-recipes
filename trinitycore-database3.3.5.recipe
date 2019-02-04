@@ -1,0 +1,41 @@
+[VERSION]
+B_GITHUBVER https://github.com/TrinityCore/TrinityCore/tree/3.3.5
+
+[REQUIRED]
+
+[BUILD]
+B_GET git https://github.com/TrinityCore/TrinityCore.git trinitycore-src3.3.5
+cd trinitycore-src3.3.5
+git checkout 3.3.5
+
+TDB_SQL=$(grep FULL_DATABASE revision_data.h.in.cmake | awk 'gsub("\"","",$3) {print $3}')
+
+mkdir -p $B_INSTALLDIR/opt/trinitycore/sql/base
+if [[ ! -f $B_FILES/opt/trinitycore/sql/base/$TDB_SQL ]]
+then
+  rm -f $B_FILES/B_DEBIAN/opt/trinitycore/sql/base/TDB*.sql
+  TDB_FILE=$(echo $TDB_SQL | awk 'gsub("sql","7z")')
+  TDB_VERSION=$(echo $TDB_SQL | cut -d_ -f4)
+  wget https://github.com/TrinityCore/TrinityCore/releases/download/TDB${TDB_VERSION}/${TDB_FILE}
+  p7zip -d ${TDB_FILE}
+  mv TDB_*${TDB_VERSION}*.sql $B_FILES/opt/trinitycore/sql/base
+fi
+
+cp -r sql $B_INSTALLDIR/opt/trinitycore
+cp -r $B_FILES/opt $B_INSTALLDIR
+
+[PKG]
+type=deb
+torepo=y
+
+[DEB]
+Package: trinitycore-database3.3.5
+Version: B_VERSION
+Section: trinitycore
+Priority: optional
+Architecture: B_ARCH
+Depends: mariadb-server
+Maintainer: noreply@trinitycore.org
+Description: TrinityCore is an MMORPG framework that is built using C++, and using a back-end of MySQL for the DB content.
+ This package contains the SQL updates for VERSION
+Homepage: https://www.trinitycore.org/
