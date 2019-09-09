@@ -2,7 +2,7 @@
 B_GITHUBVER https://github.com/TrinityCore/TrinityCore/tree/master
 
 [REQUIRED]
-default-libmysqlclient-dev libssl-dev libbz2-dev libreadline-dev libncurses-dev libboost-dev libboost-thread-dev libboost-system-dev libboost-filesystem-dev libboost-program-options-dev libboost-iostreams-dev
+clang cmake make gcc g++ libmariadbclient-dev libssl1.0-dev libbz2-dev libreadline-dev libncurses-dev libboost-all-dev default-libmysqlclient-dev
 
 [BUILD]
 B_GET git https://github.com/TrinityCore/TrinityCore.git trinitycore-src-master
