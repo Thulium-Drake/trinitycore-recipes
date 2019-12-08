@@ -1,5 +1,5 @@
 [VERSION]
-B_GITHUBVER https://github.com/TrinityCore/TrinityCore/tree/3.3.5
+B_GITVER -D -i "^TDB335" -F "^TDB335." https://github.com/TrinityCore/TrinityCore
 
 [REQUIRED]
 clang cmake make gcc g++ libmariadbclient-dev libssl1.0-dev libbz2-dev libreadline-dev libncurses-dev libboost-all-dev default-libmysqlclient-dev
