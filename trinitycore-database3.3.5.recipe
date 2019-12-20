@@ -1,5 +1,5 @@
 [VERSION]
-curl -sS https://api.github.com/repos/TrinityCore/TrinityCore/commits/3.3.5 | jq -cr '.commit.committer.date[0:10] | gsub("-";"")'
+B_GITHUBVER https://github.com/TrinityCore/TrinityCore 3.3.5
 
 [REQUIRED]
 
