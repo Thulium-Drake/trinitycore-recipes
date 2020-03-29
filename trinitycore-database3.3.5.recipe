@@ -1,9 +1,9 @@
 [VERSION]
 B_GITHUBVER https://github.com/TrinityCore/TrinityCore 3.3.5
 
-[REQUIRED]
+[REQUIRED BUSTER]
 
-[BUILD]
+[BUILD BUSTER]
 B_GET git https://github.com/TrinityCore/TrinityCore.git trinitycore-src3.3.5
 cd trinitycore-src3.3.5
 git checkout 3.3.5

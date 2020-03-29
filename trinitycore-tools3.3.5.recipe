@@ -1,10 +1,10 @@
 [VERSION]
 B_GITHUBVER https://github.com/TrinityCore/TrinityCore 3.3.5
 
-[REQUIRED]
+[REQUIRED BUSTER]
 clang cmake make gcc g++ libmariadbclient-dev libssl-dev libbz2-dev libreadline-dev libncurses-dev libboost-all-dev default-libmysqlclient-dev
 
-[BUILD]
+[BUILD BUSTER]
 B_GET git https://github.com/TrinityCore/TrinityCore.git trinitycore-src3.3.5
 cd trinitycore-src3.3.5
 git checkout 3.3.5
