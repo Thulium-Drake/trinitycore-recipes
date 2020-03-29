@@ -28,7 +28,7 @@ cp -r $B_FILES/opt $B_INSTALLDIR
 type=deb
 torepo=y
 
-[DEB]
+[DEB BUSTER]
 Package: trinitycore-database3.3.5
 Version: B_VERSION
 Section: trinitycore
